@@ -1,0 +1,4842 @@
+{
+  "name": "Disparo whatsapp",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Disparou",
+              "lookupValue": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        192,
+        -32
+      ],
+      "id": "f5ca3cd0-291f-461d-aa52-f864449bfebd",
+      "name": "Lista de disparos",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e5e682a-1d4e-4d68-a720-4fa186e95377",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "effade22-c30c-4162-8ae9-aaca42f59cc3",
+              "name": "Nome ",
+              "value": "={{ $json['Nome '] }}",
+              "type": "string"
+            },
+            {
+              "id": "42af6dd3-cad5-4fd5-a2b9-00285bff9e0c",
+              "name": "Número",
+              "value": "={{ $json['Número'] }}",
+              "type": "string"
+            },
+            {
+              "id": "73bdab47-34bd-4638-a9e3-ea5795268750",
+              "name": "Disparou",
+              "value": "={{ $json.Disparou }}",
+              "type": "boolean"
+            },
+            {
+              "id": "ee89b430-b09c-412f-9d53-07e045cb7729",
+              "name": "Sucesso",
+              "value": "={{ $json.Sucesso }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        -32
+      ],
+      "id": "c7370359-3866-41a1-9ab9-aa69747907a9",
+      "name": "Edit Fields",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1216,
+        96
+      ],
+      "id": "97f1fad1-9c10-4a3b-a3f7-d95ae3b8003c",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Número": "={{ $('Loop Over Items').item.json['Número'] }}",
+            "Disparou": "={{ true }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reviewsCount",
+              "displayName": "reviewsCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Avaliação ",
+              "displayName": "Avaliação ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sucesso",
+              "displayName": "Sucesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Respondeu",
+              "displayName": "Respondeu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Interesse?",
+              "displayName": "Interesse?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Agendou?",
+              "displayName": "Agendou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Coldcall",
+              "displayName": "Coldcall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2000,
+        32
+      ],
+      "id": "9a40e254-b6e8-4020-bf93-4029404858fc",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.waitTime }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3232,
+        32
+      ],
+      "id": "00e24ce6-658d-44e1-8f98-7774babc50db",
+      "name": "Wait",
+      "webhookId": "81129822-c501-4c98-920a-9f648490565d"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Agente n8n",
+        "remoteJid": "={{ $('Edit Fields2').item.json.number }}",
+        "messageText": "={{ $('Loop Over Items1').item.json.text }}",
+        "options_message": {
+          "delay": "={{ $json.waitTime }}"
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        5824,
+        688
+      ],
+      "id": "c1ba069f-ba08-4f23-a647-ed10fb6695de",
+      "name": "Enviar texto1",
+      "executeOnce": false,
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Defina constantes para os valores mínimo e máximo\nconst MIN_TIME = 150; // Tempo mínimo em seguntos\nconst MAX_TIME = 300; // Tempo máximo em seguntos\n\n// Gere um número aleatório entre o mínimo e o máximo\nconst randomTime = Math.floor(Math.random() * \n(MAX_TIME - MIN_TIME + 1)) + MIN_TIME;\n\n// Retorne o valor gerado\nreturn {\n  json: {\n    waitTime: randomTime\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3024,
+        32
+      ],
+      "id": "382f056b-ee97-4630-848d-7e2c4742b478",
+      "name": "Gerar tempo aleatório1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Número": "={{ $('Edit Fields2').first().json.number }}",
+            "Respondeu": "={{ true }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reviewsCount",
+              "displayName": "reviewsCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Avaliação ",
+              "displayName": "Avaliação ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sucesso",
+              "displayName": "Sucesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Respondeu",
+              "displayName": "Respondeu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Interesse?",
+              "displayName": "Interesse?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Agendou?",
+              "displayName": "Agendou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Coldcall",
+              "displayName": "Coldcall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        5616,
+        464
+      ],
+      "id": "a9e38223-c55f-458c-b14e-e36d61aa17f3",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Disparou": "={{ true }}",
+            "Número": "={{ $('Loop Over Items').item.json['Número'] }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reviewsCount",
+              "displayName": "reviewsCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Avaliação ",
+              "displayName": "Avaliação ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sucesso",
+              "displayName": "Sucesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Respondeu",
+              "displayName": "Respondeu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Interesse?",
+              "displayName": "Interesse?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Agendou?",
+              "displayName": "Agendou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Coldcall",
+              "displayName": "Coldcall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2000,
+        224
+      ],
+      "id": "d9668998-902c-4682-aa60-9f641625c4f5",
+      "name": "Append or update row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5c255f20-edd3-4a55-a1cb-e5ec92c5dcce",
+              "leftValue": "={{ $('Lista de disparos').item.json.Disparou }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        672,
+        48
+      ],
+      "id": "1566098d-ebdf-4a3a-8bfc-f6184d01f21d",
+      "name": "Disparo"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4f606009-ef4e-41df-a5b2-cf0118ce8b36",
+              "leftValue": "={{ $json.data[0].exists }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1744,
+        208
+      ],
+      "id": "d0931993-22f8-4b56-b1a6-c60dabf81ce7",
+      "name": "Número existe"
+    },
+    {
+      "parameters": {
+        "maxItems": 45
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        944,
+        96
+      ],
+      "id": "dddd31af-5dfe-4142-9ee0-3492a65febb4",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "instanceName": "Agente n8n",
+        "numbers": "={{ $json['Número'] }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        208
+      ],
+      "id": "10418a17-0417-4d52-8987-5d7baaf5ee63",
+      "name": "Verificar n mero no whats app",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        2208,
+        224
+      ],
+      "id": "665b09d8-fe88-4f65-aa19-380d33419ec8",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "MVBX5JSwzf7jsMQn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        -32
+      ],
+      "id": "48ed6fda-4471-4c2b-9f39-b2c881bf202b",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Agente n8n",
+        "remoteJid": "5531998385979",
+        "messageText": "Erro no disparo!",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        -32
+      ],
+      "id": "b74ded37-2606-44a0-907f-cae7057b41be",
+      "name": "Enviar texto2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        -112
+      ],
+      "id": "32022403-f551-42cf-a87e-8aa5b42cd763",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "12d91772-f144-4b88-8042-8f971df1ec36",
+              "name": "text",
+              "value": "={{ $('Basic LLM Chain1').item.json.text.split('\\n\\n') }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4912,
+        576
+      ],
+      "id": "526cbbcc-982a-4bc6-b83f-0b203d3f5fae",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        5120,
+        576
+      ],
+      "id": "7b3be63d-3621-43c2-a0d0-2ec1c1de634d",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": "={{ $prevNode.name === 'Split Out' }}"
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        5360,
+        576
+      ],
+      "id": "de37fb9c-5d5a-416d-a5c6-b347c88a65e1",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Defina constantes para os valores mínimo e máximo\nconst MIN_TIME = 6000; // Tempo mínimo em seguntos\nconst MAX_TIME = 12000; // Tempo máximo em seguntos\n\n// Gere um número aleatório entre o mínimo e o máximo\nconst randomTime = Math.floor(Math.random() * \n(MAX_TIME - MIN_TIME + 1)) + MIN_TIME;\n\n// Retorne o valor gerado\nreturn {\n  json: {\n    waitTime: randomTime\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5616,
+        688
+      ],
+      "id": "0fdcb234-337a-44b1-b603-36a6e95aeb9a",
+      "name": "Gerar tempo aleatório2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        0
+      ],
+      "id": "e735a7c8-a9a3-481d-af5a-bc117bbcb8c7",
+      "name": "No Operation, do nothing2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        -32
+      ],
+      "id": "f538eb36-a939-4b5f-9f0e-2c3cb5b5b093",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "number_id",
+              "value": "={{ $('Edit Fields2').first().json.number }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2256,
+        496
+      ],
+      "id": "661cda28-2871-4c37-93ad-938ac97d6f6b",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fad87595-f274-4b60-a87f-540e90593c5f",
+              "leftValue": "={{ $json.Disparou }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2480,
+        496
+      ],
+      "id": "a8ab7379-04e2-4fec-ab41-1cbdf7b7ed71",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Disparou": true,
+            "number_id": "={{ $('Edit Fields2').first().json.number }}",
+            "Nome": "={{ $('Get row(s) in sheet').first().json['Nome '] }}"
+          },
+          "matchingColumns": [
+            "number_id"
+          ],
+          "schema": [
+            {
+              "id": "number_id",
+              "displayName": "number_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2832,
+        592
+      ],
+      "id": "b872965b-90cd-4c3c-9e20-91fe08f114a6",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "disparo-wa",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1328,
+        272
+      ],
+      "id": "abdf20a1-990a-4d28-b23d-72e404684cc4",
+      "name": "Webhook",
+      "webhookId": "03bff362-2f50-44e1-ab88-8ad8a56bcf0b"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Agente n8n",
+        "remoteJid": "={{ $('Verificar n mero no whats app').item.json.data[0].number }}",
+        "messageText": "={{ $json.text }}",
+        "options_message": {
+          "delay": 5000
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        2592,
+        32
+      ],
+      "id": "080f90fa-533f-45d1-8389-bbbc121a139e",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Número": "={{ $('Verificar n mero no whats app').item.json.data[0].number }}",
+            "Sucesso": "={{ true }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reviewsCount",
+              "displayName": "reviewsCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Avaliação ",
+              "displayName": "Avaliação ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sucesso",
+              "displayName": "Sucesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Respondeu",
+              "displayName": "Respondeu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Interesse?",
+              "displayName": "Interesse?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Agendou?",
+              "displayName": "Agendou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Coldcall",
+              "displayName": "Coldcall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2800,
+        32
+      ],
+      "id": "9f8a24c4-e013-4913-b478-c3d87f022997",
+      "name": "Append or update row in sheet3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -240,
+        272
+      ],
+      "id": "3b8b913b-d381-4407-885a-bd8923f2ac7f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a5cdcdce-edda-4f43-8b02-7373c1b30039",
+              "leftValue": "={{ $json.number }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        384,
+        272
+      ],
+      "id": "6fb6c9ad-12df-4b09-9051-4cc536db212d",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "27e47a11-2179-4151-aa70-d5823627fe6d",
+              "name": "number",
+              "value": "={{ $('Code in JavaScript2').last().json.numeroTratado }}",
+              "type": "string"
+            },
+            {
+              "id": "ff94caa4-ccb4-49ed-ab37-e09d12ad9283",
+              "name": "number_sheets",
+              "value": "={{ $json['Número'] }}",
+              "type": "string"
+            },
+            {
+              "id": "37b8a07b-28d0-4af4-9465-a84f56beafe2",
+              "name": "name",
+              "value": "={{ $('Get row(s) in sheet').all().find(item => item.json['Número'] == $('Code in JavaScript2').last().json.numeroTratado)?.json['Nome '] }}",
+              "type": "string"
+            },
+            {
+              "id": "d77700be-26a1-481c-bc9f-2825e0212c9f",
+              "name": "Message",
+              "value": "={{ $('Edit Fields3').item.json.Message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        272
+      ],
+      "id": "14b4740f-2ba6-4dbe-b583-8fd2f2a9f2fe",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  try {\n    // pega o remoteJid do webhook\n    const remoteJid = item.json.body?.data?.key?.remoteJid;\n    if (!remoteJid) return item;\n\n    // remove sufixo tipo @s.whatsapp.net ou @c.us\n    let numero = String(remoteJid).replace(/@.*$/, '');\n\n    // limpa qualquer coisa que não seja número\n    let numeroLimpo = numero.replace(/\\D/g, '');\n    let numeroFinal = numeroLimpo;\n\n    // se for Brasil (55) e tiver 12 dígitos (DDI 2 + DDD 2 + local 8)\n    if (numeroLimpo.startsWith('55') && numeroLimpo.length === 12) {\n      const pais = numeroLimpo.slice(0, 2);\n      const ddd = numeroLimpo.slice(2, 4);\n      const numeroLocal = numeroLimpo.slice(4); // 8 dígitos\n\n      // só adicionar '9' se o primeiro dígito do número local for 6,7,8 ou 9\n      if (/^[6-9]/.test(numeroLocal)) {\n        numeroFinal = pais + ddd + '9' + numeroLocal;\n      }\n    }\n\n    // salva corretamente\n    item.json.numeroTratado = numeroFinal;\n    return item;\n  } catch (err) {\n    // em caso de erro inesperado, não interrompe o fluxo — anexa a informação de erro\n    item.json.numeroTratado = item.json.numeroTratado ?? null;\n    item.json._numeroTratadoError = String(err?.message ?? err);\n    return item;\n  }\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1104,
+        272
+      ],
+      "id": "5cece610-a768-4546-8ede-fbc814934319",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5824,
+        464
+      ],
+      "id": "d3e829db-1992-4f92-a0a5-bbd2922a78e8",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Oi, tudo bem? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nOpa, tudo bem? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nOi, como vai? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nOpa, como vai? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nOpa, como vai? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nBom dia, tudo bem? É da {{ $('Loop Over Items').item.json['Nome '] }}?\nBoa tarde, tudo bem? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nBoa tarde, tudo bem? É da {{ $('Loop Over Items').item.json['Nome '] }}?\nBoa noite, tudo bem? É da {{ $('Loop Over Items').item.json['Nome '] }}?\nBom dia, como vai? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nBoa tarde, como vai? É o {{ $('Loop Over Items').item.json['Nome '] }} né?\nBoa noite, como vai? É o {{ $('Loop Over Items').item.json['Nome '] }} né?",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Escolha apenas UMA variação e retorne somente ela, sem explicação.  Se usar bom dia, boa tarde ou boa noite, utilize o horário atual, {{ $now }}:  * 06:00 até 11:59 → bom dia * 12:00 até 17:59 → boa tarde * 18:00 até 05:59 → boa noite"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        2240,
+        32
+      ],
+      "id": "9f0541eb-dd38-4ac1-b093-8e831d4cf3ff",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        3408,
+        816
+      ],
+      "id": "8e982253-f4c4-4736-b617-0989f3c94060",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "MVBX5JSwzf7jsMQn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Edit Fields5').item.json.Mensagem }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Objetivo\n\nSua única função é gerar UMA levíssima variação natural do texto fixado abaixo em \"Texto base\". Você não deve responder, interpretar ou interagir com o conteúdo da mensagem que chega — exceto nos casos descritos em \"Respostas especiais\".\n\nSempre que receber uma mensagem, ignore o conteúdo dela e gere a variação do texto base. A mensagem recebida serve apenas para verificar se se enquadra em alguma resposta especial.\n\n# Texto base\n\nEu estava procurando um advogado e vi que vocês usam bastante o WhatsApp\n\nEu tenho uma empresa que trabalha com automação comercial que não é aqueles chatbots robóticos de 'digite 1 para falar com fulano'. Ela realmente raciocina, conversa naturalmente com o cliente, faz follow up, cobra documentos pendentes, atualiza o cliente sobre processos judiciais, lembra de prazos e pagamentos e só transfere para você quando é um caso urgente ou hora de fechar negócio.\n\nAcredito que isso pode ajudar bastante a sua advocacia, oque acha de marcarmos uma call no Google Meet, para eu te apresentar melhor a nossa solução?\n\n## Você pode variar\n- Ordem das frases\n- Sinônimos simples\n\n## Regras inegociáveis\n- Use apenas pontuação simples e comum. Permitido ponto, vírgula, exclamação e interrogação\n- Use apenas vocabulário cotidiano brasileiro, seja levemente informal\n- Retorne somente a variação, sem explicações\n- Não altere as palavras: \"empresa\", \"automação empresarial\", \"raciocina\" e \"Eu estava procurando um advogado\"\n- Separe cada parágrafo com uma linha em branco entre eles\n- Nunca junte os parágrafos em um bloco único\n- Retorne exatamente 3 parágrafos separados\n\n## Respostas especiais\nAntes de gerar a variação, verifique se a mensagem recebida se enquadra em algum dos casos abaixo. Se sim, responda com o indicado e em seguida gere a variação normalmente.\n\n* Caso a pessoa pergunte qual é o seu nome, responda \"Meu nome é Filipe Santos.\" e depois gere a variação.\n* Caso a pessoa mande uma mensagem do tipo \"tudo bem?\", \"como você está?\" ou algo similar, responda \"Tudo bem sim!\" e depois gere a variação.\n* Caso a pessoa mande algo como \"já já responderemos\", \"em breve retornaremos\" ou qualquer mensagem automática de ausência ou fila de atendimento, ignore completamente e gere a variação normalmente.\n* Bom dia, boa tarde, boa noite e saudações simples não devem ser respondidas, apenas gere e envie a variação."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        3456,
+        592
+      ],
+      "id": "d579df52-5a89-40ac-998d-cbab8627aa1a",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.waitTime }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3248,
+        592
+      ],
+      "id": "0ddfb90f-4bd8-4484-9b81-fddfa2d0a233",
+      "name": "Wait2",
+      "webhookId": "81129822-c501-4c98-920a-9f648490565d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Defina constantes para os valores mínimo e máximo\nconst MIN_TIME = 40; // Tempo mínimo em seguntos\nconst MAX_TIME = 70; // Tempo máximo em seguntos\n\n// Gere um número aleatório entre o mínimo e o máximo\nconst randomTime = Math.floor(Math.random() * \n(MAX_TIME - MIN_TIME + 1)) + MIN_TIME;\n\n// Retorne o valor gerado\nreturn {\n  json: {\n    waitTime: randomTime\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        592
+      ],
+      "id": "78ffdf5c-17d7-4fe3-91cb-2535d1df82e1",
+      "name": "Gerar tempo aleatório"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        4672,
+        576
+      ],
+      "id": "ea79b127-1c53-47b8-8005-21957ed64e4d",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "89e4c146-dd70-47aa-a940-6a3e33b5ce59",
+              "name": "Id da mensagem",
+              "value": "={{ $json.body.data.key.id }}",
+              "type": "string"
+            },
+            {
+              "id": "623d1817-8576-4f74-8a87-cdf61ee515f2",
+              "name": "Message",
+              "value": "={{ $json.body.data.message.conversation }}",
+              "type": "string"
+            },
+            {
+              "id": "4f0d9cf4-343c-4de0-923e-970b0880544a",
+              "name": "number_wa",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -896,
+        272
+      ],
+      "id": "50f0c737-7886-4b86-853f-ce9a0593061e",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "=message_id:{{ $('Code in JavaScript2').first().json.numeroTratado }}",
+        "messageData": "={{ $json['Id da mensagem'] }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        272
+      ],
+      "id": "fbed42de-e6d8-448f-a768-70fc4d9da920",
+      "name": "Redis8",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=message_id:{{ $('Code in JavaScript2').first().json.numeroTratado }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4448,
+        576
+      ],
+      "id": "8925a845-8fa2-40ce-8314-aa542d3725d1",
+      "name": "Redis9",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4240,
+        592
+      ],
+      "id": "2d60d2ea-5c2c-42b1-97fa-caabc26683c1",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "['Id da mensagem']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        4016,
+        592
+      ],
+      "id": "ff110b35-478f-411b-a277-5b55d3844e1c",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "Id da mensagem",
+        "key": "=message_id:{{ $('Code in JavaScript2').first().json.numeroTratado }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3808,
+        592
+      ],
+      "id": "381a6c7c-2fcf-432d-9a6e-6801d0e8c0b4",
+      "name": "Redis10",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "operation": "read-messages",
+        "instanceName": "Agente n8n",
+        "remoteJid": "={{ $('Code in JavaScript2').item.json.body.data.key.remoteJid }}",
+        "messageId": "={{ $json['[\\'Id da mensagem\\']'] }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        4448,
+        752
+      ],
+      "id": "fb30657f-3cd7-4207-9983-181c6e76d325",
+      "name": "Marcar mensagens como lidas",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Edit Fields5').first().json.Mensagem }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um classificador de intenção. Analise a mensagem e retorne **apenas** `1`, `2` ou `3`.\n\n- `1` → resposta positiva, interesse ou curiosidade (ex: \"sim\", \"claro\", \"quero saber\", \"interessante\", \"pode ser\")\n- `2` → recusa, indiferença ou resposta negativa (ex: \"não\", \"sem interesse\", \"não quero\")\n- `3` → pergunta, dúvida ou qualquer coisa que não seja claramente positiva ou negativa (ex: \"como funciona?\", \"quanto custa?\", \"me fala mais\")\n\n**Regras:** retorne somente `1`, `2` ou `3`, sem explicações, sem texto adicional. Em caso de dúvida entre 1 e 2, retorne `3`."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1536,
+        448
+      ],
+      "id": "5bc2abef-ce84-4d95-a278-a532fb77a7cb",
+      "name": "Basic LLM Chain2",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1504,
+        672
+      ],
+      "id": "2151b20f-fbc6-447f-9a43-e0d080912fe4",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "MVBX5JSwzf7jsMQn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.alphaagency.com.br/webhook/send-audio",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Edit Fields2').first().json.number }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $('Edit Fields2').first().json.name }}"
+            },
+            {
+              "name": "number_wa",
+              "value": "={{ $('Edit Fields3').item.json.number_wa }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2256,
+        656
+      ],
+      "id": "2aa28444-23e7-4de0-bd09-d4010d048ac4",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Interesse": true,
+            "number_id": "={{ $('Edit Fields4').item.json.number }}",
+            "Disparou": true
+          },
+          "matchingColumns": [
+            "number_id"
+          ],
+          "schema": [
+            {
+              "id": "number_id",
+              "displayName": "number_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "Interesse",
+              "displayName": "Interesse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2544,
+        1296
+      ],
+      "id": "072dc034-f413-4d43-bfea-2c73801e64ca",
+      "name": "Insert or update rows in a table1",
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "number_id",
+              "value": "={{ $('Edit Fields2').item.json.number }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1280,
+        864
+      ],
+      "id": "cbabc634-b112-4278-acbd-42d21011014a",
+      "name": "Select rows from a table1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "numberOutputs": 3,
+        "output": "={{ $json.Disparou === false || $json.Disparou === null ? 0 : ($json.Disparou === true && ($json.Interesse === false || $json.Interesse === null)) ? 1 : 2 }}"
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        432
+      ],
+      "id": "bd3e3d90-1c37-4b0b-beae-7100465af071",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-audio",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1584,
+        1344
+      ],
+      "id": "b2466f27-f239-4fb2-980d-0db10aea3958",
+      "name": "Send audio",
+      "webhookId": "a3fe5435-23f8-4be0-8757-ff43e80a106d"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2544,
+        1552
+      ],
+      "id": "174aeb19-227c-4fd1-8b39-8812ad7e1e08",
+      "name": "No Operation, do nothing4"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-audio",
+        "instanceName": "Agente n8n",
+        "remoteJid": "={{ $('Edit Fields4').item.json.number }}",
+        "media": "=https://xgflcvltdmdgrytbmjzb.supabase.co/storage/v1/object/sign/Audio/wa_audio_0:47.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV81YTAyZTI0My1jYzhmLTQ2NTctOWQxMi02N2FjODM1YzE4ZTUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJBdWRpby93YV9hdWRpb18wOjQ3Lm1wMyIsImlhdCI6MTc3NTEwNDk4MywiZXhwIjoxODA2NjQwOTgzfQ.-6QQaUqVXo2Tb8tDfymx06Js4KfXMDZv6PDW0UbEKRc",
+        "options_message": {
+          "delay": 47000
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        4432,
+        1280
+      ],
+      "id": "6b0cedb8-3384-486f-af86-a99746ffcdfd",
+      "name": "Enviar audio",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Send audio\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "height": 624,
+        "width": 3472,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        1168
+      ],
+      "id": "80c04254-3be3-4e7d-ac2a-2cae1a8ec25f",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7b12c3af-7ffc-408c-8f52-70c1853aeebc",
+              "name": "number",
+              "value": "={{ $json.headers.number }}",
+              "type": "string"
+            },
+            {
+              "id": "30b7d87f-21ab-4e7f-ad3a-bced6e50334d",
+              "name": "name",
+              "value": "={{ $json.headers.name }}",
+              "type": "string"
+            },
+            {
+              "id": "921bb64d-5a65-4a3e-9fc6-073ec9187bdc",
+              "name": "number_wa",
+              "value": "={{ $json.headers.number_wa }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1792,
+        1344
+      ],
+      "id": "a72f0dad-0420-4f15-bdad-3a1f644079d3",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "cc7ba5ee-3fe2-4db1-bbc8-4edc8b179692",
+              "leftValue": "={{ $json.Interesse }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2288,
+        1424
+      ],
+      "id": "ea6e4cc9-62d2-4d60-b608-9b4ed0dddd1a",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Número": "={{ $('Edit Fields4').first().json.number }}",
+            "Interesse?": "={{ true }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sucesso",
+              "displayName": "Sucesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Respondeu",
+              "displayName": "Respondeu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Interesse?",
+              "displayName": "Interesse?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Agendou?",
+              "displayName": "Agendou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Coldcall",
+              "displayName": "Coldcall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4640,
+        1520
+      ],
+      "id": "4cff7ad7-3ba7-473e-aefa-c411f9e3e3af",
+      "name": "Append or update row in sheet4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "number_id",
+              "value": "={{ $json.number }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2032,
+        1344
+      ],
+      "id": "f1df27e4-cefc-4127-9b02-241236aa1a10",
+      "name": "Select rows from a table2",
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=message_id:{{ $('Code in JavaScript2').first().json.numeroTratado }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        720
+      ],
+      "id": "4af7803e-e708-4389-bdb2-75877d7d8558",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=message_id:{{ $('Edit Fields4').item.json.number }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3792,
+        1280
+      ],
+      "id": "a25d0870-34cd-4be0-ad2a-e0de80a8b650",
+      "name": "Redis11",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3584,
+        1296
+      ],
+      "id": "1f646930-cf76-47e2-a9cd-795544e54b12",
+      "name": "Loop Over Items3"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "['Id da mensagem']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        1296
+      ],
+      "id": "a85893ae-d0c0-44e5-a346-27f144245dc0",
+      "name": "Split Out2"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "Id da mensagem",
+        "key": "=message_id:{{ $('Edit Fields4').first().json.number }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3152,
+        1296
+      ],
+      "id": "293cb85c-eafc-4db9-89fb-92b38d6c58f5",
+      "name": "Redis12",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "operation": "read-messages",
+        "instanceName": "Agente n8n",
+        "remoteJid": "={{ $('Edit Fields4').item.json.number_wa }}",
+        "messageId": "={{ $json['[\\'Id da mensagem\\']'] }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        3792,
+        1456
+      ],
+      "id": "24b1a0bb-6f3d-458f-a929-87c27509201e",
+      "name": "Marcar mensagens como lidas1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "numberOutputs": 3,
+        "output": "={{ parseInt($json.text) === 1 ? 0 : parseInt($json.text) === 2 ? 1 : 2 }}"
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1952,
+        544
+      ],
+      "id": "8b1bcf1a-16d1-42fa-afad-45326c9924f8",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=message_id:{{ $('Code in JavaScript2').first().json.numeroTratado }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2256,
+        816
+      ],
+      "id": "6550a74a-b8b3-4492-8bf5-28f74a5e8396",
+      "name": "Redis2",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk",
+          "mode": "list",
+          "cachedResultName": "Lista advocacia Completa #1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xX5pVbpEe52MDssAkRk4xAwidfF7N0FgHw_7e-SVSLk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Número": "={{ $('Edit Fields2').item.json.number }}",
+            "Interesse?": "={{ true }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sucesso",
+              "displayName": "Sucesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Respondeu",
+              "displayName": "Respondeu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Interesse?",
+              "displayName": "Interesse?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Agendou?",
+              "displayName": "Agendou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Coldcall",
+              "displayName": "Coldcall",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2256,
+        976
+      ],
+      "id": "ff00ee39-25ad-4129-8392-aced8b4902f8",
+      "name": "Append or update row in sheet5",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Agente n8n",
+        "remoteJid": "5531998385979",
+        "messageText": "Lead respondeu fora do padrão! ",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        976
+      ],
+      "id": "56b994ae-0cd1-49fe-b822-1dbdeaf95cea",
+      "name": "Enviar texto4",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Interesse": true,
+            "number_id": "={{ $('Edit Fields2').first().json.number }}",
+            "Disparou": true
+          },
+          "matchingColumns": [
+            "number_id"
+          ],
+          "schema": [
+            {
+              "id": "number_id",
+              "displayName": "number_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "Interesse",
+              "displayName": "Interesse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2688,
+        976
+      ],
+      "id": "0620f76d-c3d9-4b61-b8a8-3c1eb0f9a239",
+      "name": "Insert or update rows in a table2",
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        816
+      ],
+      "id": "aca84908-9405-43c9-9556-d1ade97653a0",
+      "name": "No Operation, do nothing3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        656
+      ],
+      "id": "0f36a25d-793d-4dd5-9217-fbe6b43696b4",
+      "name": "No Operation, do nothing5"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-audio",
+        "instanceName": "Agente n8n",
+        "remoteJid": "={{ $('Edit Fields4').item.json.number }}",
+        "media": "https://xgflcvltdmdgrytbmjzb.supabase.co/storage/v1/object/sign/Audio/wa_audio_0:08.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV81YTAyZTI0My1jYzhmLTQ2NTctOWQxMi02N2FjODM1YzE4ZTUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJBdWRpby93YV9hdWRpb18wOjA4Lm1wMyIsImlhdCI6MTc3NTE0MDAyMiwiZXhwIjoxODA2Njc2MDIyfQ.1Li0N7YzLwDL83pIcnMrWyo5K4M7foonSSvBLcDZaPA",
+        "options_message": {
+          "delay": 8000
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        4432,
+        1520
+      ],
+      "id": "946ad8e7-2751-4156-b382-fe0f2e33e86f",
+      "name": "Enviar audio1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.waitTime }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2960,
+        1296
+      ],
+      "id": "3dbfbbac-5e98-4a43-a350-906e77b8127b",
+      "name": "Wait5",
+      "webhookId": "81129822-c501-4c98-920a-9f648490565d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Defina constantes para os valores mínimo e máximo\nconst MIN_TIME = 25; // Tempo mínimo em seguntos\nconst MAX_TIME = 50; // Tempo máximo em seguntos\n\n// Gere um número aleatório entre o mínimo e o máximo\nconst randomTime = Math.floor(Math.random() * \n(MAX_TIME - MIN_TIME + 1)) + MIN_TIME;\n\n// Retorne o valor gerado\nreturn {\n  json: {\n    waitTime: randomTime\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2752,
+        1296
+      ],
+      "id": "4ef6c1fe-f220-4722-80c1-05510e2b3d1b",
+      "name": "Gerar tempo aleatório3"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "Mensagem",
+        "key": "=Buffer-de-mensagem:{{ $('Edit Fields2').item.json.number }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        1328
+      ],
+      "id": "0c2b1dea-bc73-4e56-8b2c-22b047b825ce",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "471c01c8-eba3-40e5-ae0a-8704f6f62de7",
+              "leftValue": "={{ $json.Mensagem.last() }}",
+              "rightValue": "={{ $('Wait6').item.json.Mensagem }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        176,
+        1328
+      ],
+      "id": "32dbb4ec-03e3-40d7-9703-a8fb4c004b0c",
+      "name": "If6"
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "=Buffer-de-mensagem:{{ $('Edit Fields2').item.json.number }}",
+        "messageData": "={{ $json.Mensagem }}",
+        "tail": true
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        1328
+      ],
+      "id": "437b2aad-dbda-4e57-8836-2a6af5d99db2",
+      "name": "Redis3",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "09b252ef-5b4a-48a8-8e62-3d7c8fbe20c8",
+              "name": "Mensagem",
+              "value": "={{ $json.Mensagem.join(\" \") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        464,
+        1232
+      ],
+      "id": "6a21fe67-1b45-4429-bede-bc8718baf78a",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "=Buffer-de-mensagem:{{ $('Edit Fields2').item.json.number }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        688,
+        1232
+      ],
+      "id": "986a8b42-1de2-40f7-958b-f66989c04148",
+      "name": "Redis4",
+      "credentials": {
+        "redis": {
+          "id": "sKE4NY08Ex32tE2h",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -352,
+        1328
+      ],
+      "id": "fb020572-9e9b-47f0-957a-1122a49fee65",
+      "name": "Wait6",
+      "webhookId": "2e8138f4-a55e-4e6b-b64b-1cb40081d28e"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        464,
+        1424
+      ],
+      "id": "5a45a1c6-927e-43c4-8095-1efd7b455440",
+      "name": "No Operation, do nothing7"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.waitTime }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4208,
+        1280
+      ],
+      "id": "e1b90e66-1bb1-4780-922d-c3f762a34996",
+      "name": "Wait7",
+      "webhookId": "81129822-c501-4c98-920a-9f648490565d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Defina constantes para os valores mínimo e máximo\nconst MIN_TIME = 2; // Tempo mínimo em seguntos\nconst MAX_TIME = 4; // Tempo máximo em seguntos\n\n// Gere um número aleatório entre o mínimo e o máximo\nconst randomTime = Math.floor(Math.random() * \n(MAX_TIME - MIN_TIME + 1)) + MIN_TIME;\n\n// Retorne o valor gerado\nreturn {\n  json: {\n    waitTime: randomTime\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4000,
+        1280
+      ],
+      "id": "13267456-56d7-4973-9acc-ca8cba959cf8",
+      "name": "Gerar tempo aleatório4"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4640,
+        1280
+      ],
+      "id": "ec620111-c56c-4e6a-ac7a-8f096b55777a",
+      "name": "Wait3",
+      "webhookId": "6ffac21b-8907-4c04-97b0-ae01d9ec1dcb"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.data.messageType }}",
+                    "rightValue": "conversation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "bf1aa852-74d6-4ab1-a221-0f1b54a6dda1"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e76536d0-c7fc-4004-a97c-156ab59e2b8f",
+                    "leftValue": "={{ $('Webhook').item.json.body.data.messageType }}",
+                    "rightValue": "audioMessage",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "88401710-4578-4d1b-acdf-7d8b04265133",
+                    "leftValue": "={{ $('Webhook').item.json.body.data.messageType }}",
+                    "rightValue": "imageMessage",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Image"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -624,
+        832
+      ],
+      "id": "98b0b402-ec05-48c3-8b6c-13cbdb6b816c",
+      "name": "Tipo de mensagem"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b0adecd1-3211-48f9-8b4a-9dfd1943fd37",
+              "name": "Mensagem",
+              "value": "={{ $('Edit Fields3').item.json.Message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        368,
+        656
+      ],
+      "id": "1aaa5772-207d-4793-9aa2-bba439ccd589",
+      "name": "Mensagem de texto"
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "operation": "get-media-base64",
+        "instanceName": "=Agente n8n",
+        "messageId": "={{ $('Edit Fields3').item.json['Id da mensagem'] }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        848
+      ],
+      "id": "787650dd-ecc6-4d6c-a256-6f356f6f8572",
+      "name": "Obter m dia em base64",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data.base64",
+        "options": {
+          "mimeType": "audio/mpeg"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -48,
+        848
+      ],
+      "id": "cb7635f3-3fe7-4207-9617-96af187865c2",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+          "language": "pt"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        848
+      ],
+      "id": "33a5b2a8-8e57-4926-b2ac-0c4ff6b0462e",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "MVBX5JSwzf7jsMQn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07df308a-2210-4ac3-b337-c2c12eeccfde",
+              "name": "Mensagem",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        368,
+        848
+      ],
+      "id": "6d983679-e583-4a39-9486-73e84f6ea875",
+      "name": "Transcrição audio"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "63fba786-c883-451f-bcfc-d35147f842ac",
+              "name": "Mensagem",
+              "value": "={{ $json.Mensagem }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        736,
+        848
+      ],
+      "id": "15f3404a-c941-459b-a496-fef45530031a",
+      "name": "Mensagem final"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data.base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -48,
+        1040
+      ],
+      "id": "7dbc3adb-d6d5-4555-b49b-ec8330b149b7",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "operation": "get-media-base64",
+        "instanceName": "=Agente n8n",
+        "messageId": "={{ $('Edit Fields3').item.json['Id da mensagem'] }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        1040
+      ],
+      "id": "571d8999-b773-400d-a29f-5ef4f7d36b7a",
+      "name": "Obter m dia em base",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "\nVocê é um especialista em analisar imagens. Sua tarefa é examinar o conteúdo fornecido, transcrever cada texto, número, seta ou detalhe relevante, descrevendo cenas de forma clara, estruturada e precisa, linha a linha, sem pular nada. No final envia as informações em forma de texto.",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        1040
+      ],
+      "id": "17862c01-0643-4507-b072-328f5c0132f4",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "MVBX5JSwzf7jsMQn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dbfbcee1-2557-43b2-8b9c-5c45e28e0437",
+              "name": "Mensagem",
+              "value": "={{ $json['0'].content[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        368,
+        1040
+      ],
+      "id": "20adda79-6e71-4959-8c81-9467fbc3b656",
+      "name": "Transcrição imagem"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3944fed2-8273-46e2-b49d-caf9ada02094",
+              "leftValue": "={{ $json.number_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1072,
+        864
+      ],
+      "id": "6e0a5a78-1fb3-4563-a8f9-a3ea196bd249",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Disparou": false,
+            "Interesse": false,
+            "number_id": "={{ $('Edit Fields2').first().json.number }}",
+            "Nome": "={{ $('Edit Fields2').first().json.name }}"
+          },
+          "matchingColumns": [
+            "number_id"
+          ],
+          "schema": [
+            {
+              "id": "number_id",
+              "displayName": "number_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Disparou",
+              "displayName": "Disparou",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Interesse",
+              "displayName": "Interesse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -864,
+        960
+      ],
+      "id": "9c9663cf-7139-4e7f-b561-0210a4503c64",
+      "name": "Insert or update rows in a table3",
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "Disparo",
+          "mode": "list",
+          "cachedResultName": "Disparo"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "number_id",
+              "value": "={{ $('Edit Fields2').first().json.number }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1072,
+        448
+      ],
+      "id": "2108514c-0e67-4ead-838a-5363400bff68",
+      "name": "Select rows from a table3",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "DAWJdH31xc06KyTK",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a201a537-8083-4e37-bee5-384fdfe79956",
+              "leftValue": "={{ $json.Message }}",
+              "rightValue": ".com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -304,
+        640
+      ],
+      "id": "b7d3768a-adaa-4b9b-931f-bc2f26731884",
+      "name": "If4",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1nz7B4Y73yp1mKGjzpIRCEAQP5Z95pZR5mZC6CRhe9H4",
+          "mode": "list",
+          "cachedResultName": "Emails disparo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nz7B4Y73yp1mKGjzpIRCEAQP5Z95pZR5mZC6CRhe9H4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nz7B4Y73yp1mKGjzpIRCEAQP5Z95pZR5mZC6CRhe9H4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Número": "={{ $('Tipo de mensagem').item.json.number }}",
+            "Nome ": "={{ $('Tipo de mensagem').item.json.name }}",
+            "Email": "={{ $json.text }}"
+          },
+          "matchingColumns": [
+            "Número"
+          ],
+          "schema": [
+            {
+              "id": "Nome ",
+              "displayName": "Nome ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        528
+      ],
+      "id": "a0664182-9079-43f6-9a52-5d8a88cad018",
+      "name": "Append or update row in sheet6",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vk56kMT3E6PViwYt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.Message }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Objetivo Sua única função é identificar e extrair o endereço de e-mail contido na mensagem recebida e retorná-lo como output.  ## Regras inegociáveis - Retorne apenas o e-mail encontrado, sem nenhum texto adicional, sem explicações, sem pontuação extra - Se houver mais de um e-mail na mensagem, retorne apenas o primeiro encontrado - Se não houver nenhum e-mail na mensagem, retorne apenas: null"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -128,
+        528
+      ],
+      "id": "91b16e2f-238a-4381-b1fb-9aad16b5bad1",
+      "name": "Basic LLM Chain3"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -144,
+        720
+      ],
+      "id": "f54e6d7a-904a-4011-9077-0b79a25f21d8",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "MVBX5JSwzf7jsMQn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a1e77e5-8108-45a4-a873-3dd1d0aaa7c5",
+              "leftValue": "={{ $('Code in JavaScript2').item.json.body.data.key.fromMe }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -672,
+        176
+      ],
+      "id": "8a4a5f46-25ab-4b1c-9e88-0105563d82b0",
+      "name": "If5"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        80
+      ],
+      "id": "caf99377-e1af-48a6-b14b-a02c81ec4f47",
+      "name": "No Operation, do nothing8"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "16baa4c2-aaf0-4b4f-aa26-7f701305f92b",
+              "leftValue": "={{ $json.number }}",
+              "rightValue": "={{ $('Get row(s) in sheet').item.json['Número'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        176,
+        272
+      ],
+      "id": "1bee582f-f79e-4fc9-8ba4-8b76eed97cf6",
+      "name": "Filter",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        256
+      ],
+      "id": "dfea8b21-9386-4d70-af1a-fc75d0e3eae9",
+      "name": "No Operation, do nothing6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8c12ed9a-5e63-4d05-92f7-1b65ae93d36e",
+              "leftValue": "={{ $json.Disparou }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -864,
+        768
+      ],
+      "id": "e6ba7f90-7b85-46ed-a7d7-96b2a7940f1f",
+      "name": "If7"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        656
+      ],
+      "id": "73e6fecf-6fd1-4003-a73b-ef47321a0114",
+      "name": "No Operation, do nothing9"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "calendarId": {
+          "__rl": true,
+          "value": "dk.ghost1.h@gmail.com",
+          "mode": "list",
+          "cachedResultName": "dk.ghost1.h@gmail.com"
+        },
+        "triggerOn": "eventCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        -208
+      ],
+      "id": "286c4b99-4207-4ed5-91e5-c42f3a6b13f0",
+      "name": "Google Calendar Trigger",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "g05DtnIft1kJNGdM",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Agente n8n",
+        "remoteJid": "5531998385979",
+        "messageText": "Nova reunião com lead agendada!",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        -208
+      ],
+      "id": "6d20138a-ba9e-4da2-ba72-3964e36eeb67",
+      "name": "Enviar texto5",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3yd5DPQO26N9m04W",
+          "name": "Evolution account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Send audio": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.alphaagency.com.br",
+            "user-agent": "axios/1.13.5",
+            "content-length": "0",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "name": "Filipe lindo",
+            "number": "5531998385979",
+            "number_wa": "553198385979@s.whatsapp.net",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.alphaagency.com.br",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "ad5216eb4109",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {},
+          "webhookUrl": "https://n8n.alphaagency.com.br/webhook-test/send-audio",
+          "executionMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Lista de disparos": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Disparo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Verificar n mero no whats app",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar tempo aleatório1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Disparo": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Limit3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Número existe": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append or update row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar n mero no whats app": {
+      "main": [
+        [
+          {
+            "node": "Número existe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto2": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gerar tempo aleatório2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar tempo aleatório2": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing2": {
+      "main": [
+        []
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Lista de disparos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Gerar tempo aleatório",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet3": {
+      "main": [
+        [
+          {
+            "node": "Gerar tempo aleatório1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Redis10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar tempo aleatório": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis8": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis9": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Redis9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marcar mensagens como lidas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis10": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar mensagens como lidas": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain2": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table1": {
+      "main": [
+        [
+          {
+            "node": "Gerar tempo aleatório3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send audio": {
+      "main": [
+        []
+      ]
+    },
+    "Enviar audio": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items3": {
+      "main": [
+        [
+          {
+            "node": "Redis11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marcar mensagens como lidas1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis12": {
+      "main": [
+        [
+          {
+            "node": "Split Out2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar mensagens como lidas1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis11": {
+      "main": [
+        [
+          {
+            "node": "Gerar tempo aleatório4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Redis2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append or update row in sheet5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet5": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto4": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis2": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar audio1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar tempo aleatório3": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "Redis12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis1": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis3": {
+      "main": [
+        [
+          {
+            "node": "Wait6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Redis4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait6": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis4": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar tempo aleatório4": {
+      "main": [
+        [
+          {
+            "node": "Wait7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait7": {
+      "main": [
+        [
+          {
+            "node": "Enviar audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Enviar audio1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de mensagem": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obter m dia em base64",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obter m dia em base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem de texto": {
+      "main": [
+        [
+          {
+            "node": "Mensagem final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obter m dia em base64": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Transcrição audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcrição audio": {
+      "main": [
+        [
+          {
+            "node": "Mensagem final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obter m dia em base": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Transcrição imagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcrição imagem": {
+      "main": [
+        [
+          {
+            "node": "Mensagem final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem final": {
+      "main": [
+        [
+          {
+            "node": "Redis3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing7": {
+      "main": [
+        []
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Insert or update rows in a table3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table3": {
+      "main": [
+        [
+          {
+            "node": "Tipo de mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table3": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensagem de texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain3": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Redis8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tipo de mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar Trigger": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto5": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "timezone": "America/Sao_Paulo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "NhTzN5ImoAn8iDQew41p4"
+  },
+  "versionId": "fbaa7d57-a882-473a-af5c-618d43b59a7c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "88d26f60115fa273cc60f8a3e2602a65f6242fe872247b74a16e5ed252940ede"
+  },
+  "id": "NhTzN5ImoAn8iDQew41p4",
+  "tags": []
+}
